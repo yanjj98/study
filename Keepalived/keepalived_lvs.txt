@@ -154,8 +154,6 @@ exit 0
 
 
 5.启动两个LVS节点
-启动LVS的过程就太简单了（两个节点都是一样的启动方式）：
-
 [root@lvs2 ~]# ipvsadm -C
 [root@lvs2 ~]# ipvsadm -At 10.10.8.80:80 -s rr 
 [root@lvs2 ~]# ipvsadm -at 10.10.8.80:80 -r 10.10.8.77 -g
@@ -163,10 +161,8 @@ exit 0
 [root@lvs2 ~]# ipvsadm -L -n
 
 6.启动keepalived
-sudo /etc/init.d/keepalived restart
-sudo /etc/init.d/keepalived start
-killall keepalived
-sudo /usr/sbin/nginx
-nginx -s reload
+/etc/init.d/keepalived restart
+/etc/init.d/keepalived start
 
+7.验证
 curl http://10.10.8.80

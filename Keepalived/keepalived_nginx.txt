@@ -80,11 +80,10 @@ vrrp_instance VI_1 {
 }
 
 4.monitor_nginx.sh脚本
-# sudo vim /opt/monitor_nginx.sh
+sudo vim /opt/monitor_nginx.sh
 
 5.启动
 sudo /etc/init.d/keepalived restart
 sudo /etc/init.d/keepalived start
-killall keepalived
 sudo /usr/sbin/nginx
-nginx -s reload
+sudo /usr/sbin/nginx -s reload
