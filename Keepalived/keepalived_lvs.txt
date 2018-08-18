@@ -33,7 +33,7 @@ vrrp_instance VI_1 {
     }
     virtual_ipaddress 
     {
-        10.10.8.81
+        10.10.8.80
     }
 }
 
@@ -85,7 +85,7 @@ vrrp_instance VI_1 {
     }
     virtual_ipaddress 
     {
-        10.10.8.81
+        10.10.8.80
     }
 }
 
