@@ -1,0 +1,50 @@
+--
+find / -name my.ini
+
+--源更新
+vim /etc/apt/sources.list
+
+--开放端口
+sudo ufw allow 5555
+
+--后台启动
+nohup your_command &
+
+--查看cpu、内存信息
+sudo cat /proc/cpuinfo
+
+--jdk安装、
+vim /etc/profile
+export JAVA_HOME=/usr/lib/jdk/jdk1.8
+export PATH=$PATH:$JAVA_HOME/bin
+export CLASSPATH=.:$JAVA_HOME\lib:$JAVA_HOME\jre\lib
+
+--LoadRunner监控
+sudo apt-get update 
+sudo apt-get install openbsd-inetd 
+sudo apt-get install rstatd
+
+sudo apt-get remove     --purge openbsd-inetd
+sudo apt-get remove     --purge rstatd
+
+--查看文件最后几行
+cat gateway.log | tail -n 1000
+
+--高并发配置
+1. 编辑sysctl.conf
+sudo vi /etc/sysctl.conf
+在最下面编辑添加：
+net.ipv4.tcp_fin_timeout = 30
+net.ipv4.tcp_keepalive_time = 1200
+net.ipv4.route.gc_timeout = 100
+net.ipv4.ip_local_port_range = 1024 65000
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_tw_recycle = 1
+net.ipv4.tcp_syn_retries = 1
+net.ipv4.tcp_synack_retries = 1
+net.ipv4.tcp_max_syn_backlog = 262144
+net.core.netdev_max_backlog = 262144
+net.core.somaxconn = 262144
+net.ipv4.tcp_mem = 94500000 915000000 927000000
+
+2. sudo /sbin/sysctl -p

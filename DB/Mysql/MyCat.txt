@@ -1,0 +1,18 @@
+/usr/local/mycat/bin/mycat restart
+mysql -uroot -p123456 -h127.0.0.1 -P8066 -DTESTDB
+mysql -uroot -p123456 -h127.0.0.1 -P9066
+show @@heartbeat
+
+create table company(name varchar(50) primary key);
+
+create table travelrecord(id int(15) primary key,name varchar(100));
+
+insert into travelrecord(id,name) values(100,'test');
+insert into USER_RECORD(id,USER_ID,FUNC,ACCESS_TIME,ENABLED_FLAG) values(1,1,'22',CURRENT_TIMESTAMP,'Y')
+
+change master to master_host='10.10.8.76', 
+master_port=3306,
+master_user='repl',
+master_password='mysql', 
+master_log_file='master-bin.000028',
+master_log_pos=864;
