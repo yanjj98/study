@@ -1,0 +1,4 @@
+Edit configurations -> maven -> + 新建
+
+working directory: 模块根目录
+mybatis-generator:generate -e
