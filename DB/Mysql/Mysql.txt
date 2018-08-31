@@ -33,3 +33,7 @@ SELECT *
 FROM USER_BASE_INFO UBI,USER_CAMERA UC,CAMERA_SHARE CS
 WHERE UBI.ID=UC.USER_ID
 AND   UC.CAMERA_NO=CS.CAMERA_NO
+
+--时间比较
+select * from user_dynamic_code udc
+ where (UNIX_TIMESTAMP(now())-UNIX_TIMESTAMP(udc.created_time)) < 60*5
