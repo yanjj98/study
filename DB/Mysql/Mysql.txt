@@ -26,6 +26,9 @@ mysql -uroot -ptvtadmin -h10.10.8.78 -P 3306
 --启停
 service mysql restart
 
+--修改密码
+mysqladmin -uroot -ptvtadmin password 123456
+
 --
 mysqldump --database test --flush-log > /mysqlback/mysql-all-back-`date +%F-%T`.sql  完整数据库备份
 
