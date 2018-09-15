@@ -1,0 +1,11 @@
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONArray;
+
+//转化为对象
+ObjectMapper objectMapper = new ObjectMapper();
+List<DPiKeyInfo> getDpiKeyOutputList = objectMapper.readValue(dpikey, new TypeReference<List<DPiKeyInfo>>(){});
+
+//转化为JSON串
+JSONArray listArray=new JSONArray(dpiKeyOutputList);
+String strInfo=listArray.toString();
