@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tdcloud.cmdb.mapper.CmdbOperationTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.tdcloud.cmdb.model.domain.CmdbOperationTemplate" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="RES_TYPE" property="resType" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SCRIPT_ID" property="scriptId" jdbcType="BIGINT" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RES_TYPE, NAME, SCRIPT_ID, CREATED_TIME, LAST_UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cmdb_operation_template
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cmdb_operation_template
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tdcloud.cmdb.model.domain.CmdbOperationTemplate" >
+    insert into cmdb_operation_template (ID, RES_TYPE, NAME, 
+      SCRIPT_ID, CREATED_TIME, LAST_UPDATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{resType,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{scriptId,jdbcType=BIGINT}, #{createdTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tdcloud.cmdb.model.domain.CmdbOperationTemplate" >
+    insert into cmdb_operation_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="resType != null" >
+        RES_TYPE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="scriptId != null" >
+        SCRIPT_ID,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="resType != null" >
+        #{resType,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="scriptId != null" >
+        #{scriptId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdcloud.cmdb.model.domain.CmdbOperationTemplate" >
+    update cmdb_operation_template
+    <set >
+      <if test="resType != null" >
+        RES_TYPE = #{resType,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="scriptId != null" >
+        SCRIPT_ID = #{scriptId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tdcloud.cmdb.model.domain.CmdbOperationTemplate" >
+    update cmdb_operation_template
+    set RES_TYPE = #{resType,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      SCRIPT_ID = #{scriptId,jdbcType=BIGINT},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <resultMap id="BaseResultDtoMap" type="com.tdcloud.cmdb.model.dto.CmdbOperationTemplateDto" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="RES_TYPE" property="resType" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SCRIPT_ID" property="scriptId" jdbcType="BIGINT" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <!--collection property="paramList" column="id" javaType="list" select="getParams"/-->
+    <collection property="paramList" ofType="com.tdcloud.cmdb.model.domain.CmdbScriptParam" column="SCRIPT_ID" select="getParams"/>
+  </resultMap>
+
+  <select id="selectByResType" resultMap="BaseResultDtoMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from cmdb_operation_template
+    where RES_TYPE = #{resType,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getParams" parameterType="java.lang.Long" resultType="com.tdcloud.cmdb.model.domain.CmdbScriptParam">
+    SELECT *
+    FROM  cmdb_script_param
+    where SCRIPT_ID = #{scriptId,jdbcType=BIGINT}
+   </select>
+
+</mapper>
