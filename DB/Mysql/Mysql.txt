@@ -40,3 +40,10 @@ AND   UC.CAMERA_NO=CS.CAMERA_NO
 --时间比较
 select * from user_dynamic_code udc
  where (UNIX_TIMESTAMP(now())-UNIX_TIMESTAMP(udc.created_time)) < 60*5
+ 
+--
+select *
+	from root_dc_info
+    where (ip is not null and ip <> '')
+	and   (port is not null and port <> '')
+	and  (dpikey_id is null or dpikey_id  <>  (select max(id) from root_dpikey))
