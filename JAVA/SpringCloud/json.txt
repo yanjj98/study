@@ -1,10 +1,9 @@
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import org.json.JSONArray;
 
 //转化为对象
-ObjectMapper objectMapper = new ObjectMapper();
-List<DPiKeyInfo> getDpiKeyOutputList = objectMapper.readValue(dpikey, new TypeReference<List<DPiKeyInfo>>(){});
+List<DPiKeyInfo> getDpiKeyOutputList = JSON.parseObject(dpikey,new TypeReference<List<DPiKeyInfo>>(){});
 
 //转化为JSON串
 JSONArray listArray=new JSONArray(dpiKeyOutputList);
