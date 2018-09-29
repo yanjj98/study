@@ -1,15 +1,13 @@
 sudo service redis-server stop
-1
-开启服务
 sudo servcie redis-server start
-1
-重启
 sudo service redis-server restart
-1
+
+redis-server --service-install redis.windows.conf
+
 redis简单使用
 redis-cli
-1
+config get requirepass //获取当前密码
+config set requirepass "yourpassword"
+
 修改redis配置 远程访问：
 sudo vim /etc/redis/redic.conf
-
-redis-cli
