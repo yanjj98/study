@@ -1,2 +1,6 @@
 mvn install:install-file -Dfile=tdcloud_common_base-1.0.0.jar -DgroupId=com.tdcloud -DartifactId=tdcloud_common_base -Dversion=1.0.0 -Dpackaging=jar
 mvn install:install-file -Dfile=tdcloud_common_access-1.0.0.jar -DgroupId=com.tdcloud -DartifactId=tdcloud_common_access -Dversion=1.0.0 -Dpackaging=jar
+
+M2_HOME
+MAVEN_HOME
+MAVEN_OPTS=-Xms128m -Xmx512m -Duser.language=zh -Dfile.encoding=UTF-8
